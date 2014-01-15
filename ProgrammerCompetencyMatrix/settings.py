@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'survay',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,3 +81,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
+STATICFILES_DIRS = ( 
+   os.path.join(BASE_DIR, 'static').replace(os.sep, '/'),              
+                    )
+# BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+
+#logging.warning(TEMPLATE_DIR)
+
+
+TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR, '../../templates/'),
+    os.path.join(BASE_DIR, 'templates').replace(os.sep, '/'),
+#    'D:/Java/Project/GettingStartBlog/templates/'
+)
+

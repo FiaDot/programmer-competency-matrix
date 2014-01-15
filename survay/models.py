@@ -10,7 +10,7 @@ class Survay(models.Model):
     
     def __str__(self):
         return "%s" % (self.question[:40])
- 
+
 
 
 class User(models.Model):
@@ -31,4 +31,3 @@ class Answer(models.Model):
 
     def __str__(self):
         return "%s : %s : %d" % (self.user, self.survay, self.answer)   
-        
