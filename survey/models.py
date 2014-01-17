@@ -1,15 +1,16 @@
 from django.db import models
 
 
-class Survay(models.Model):
-    question = models.TextField()
+class Question(models.Model):
+    seq = models.AutoField(primary_key=True)
+    body = models.CharField(max_length=100)
     answer1 = models.TextField()
     answer2 = models.TextField()
     answer3 = models.TextField()
     answer4 = models.TextField()
     
     def __str__(self):
-        return "%s" % (self.question[:40])
+        return self.body
 
 
 
@@ -25,9 +26,9 @@ class User(models.Model):
 
 class Answer(models.Model):
     user = models.ForeignKey(User)
-    survay = models.ForeignKey(Survay)
+    question = models.ForeignKey(Question)
     answer = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "%s : %s : %d" % (self.user, self.survay, self.answer)   
+        return "%s : %s : %d" % (self.user, self.question, self.answer)   

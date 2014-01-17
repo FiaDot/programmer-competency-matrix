@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <!--  Questionaire -->        
+	<div class="row">
+		{% for it_question in question.object_list %}
+    	
+    	<div class="col-lg-8">
+    		{{ it_question.body }}            
+    	</div>
+    	
+    	 {% endfor %}
+    </div>    
+
+{% endblock %}

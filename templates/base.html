@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	
+	<title>{% block title %} Programmer Competency Matrix {% endblock %}</title>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<meta name="description" content="survey">
+	<meta name="author" content="fiadot">
+	<meta name="designer" content="fiadot">
+	<meta name="keywords" content="survey,django,fiadot">	  	 
+	 
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+	<link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}">
+	<link rel="stylesheet" href="{% static "css/custom.css" %}" >	
+</head>
+
+<body>
+
+	{% block nav-global %}
+	   <!-- Static navbar -->
+	    <div class="navbar navbar-default navbar-static-top" role="navigation">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	
+	          <a class="navbar-brand" href="{% url 'survey.views.main' %}">Programmer Competency Matrix</a>
+	          
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="{% url 'survey.views.main' %}">Survey</a></li>
+	          	<li><a href="{% url 'admin:index' %}">Admin</a></li>
+	          
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </div>
+    {% endblock %}
+    
+      
+
+	<div class="contents">		
+		{% block content %}{% endblock %}
+	</div>
+	
+	
+	<div id="footer">
+ 		 <div class="container text-center">
+    		<p class="text-muted credit">MIT license. </p>
+  		</div>
+	</div>
+
+
+	<!-- Main Scripts -->				
+    <script src="{% static "js/jquery-1.10.2.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <script src="{% static "js/custom.js" %}"></script>
+</body>
+
+</html>
