@@ -4,26 +4,57 @@
     
     <form class="form-inline" action="{% url 'survey.views.submit' %}" method="POST">      
 
-    <!--  Questionaire -->        
-	<div class="row">
-		{% for question in question_list %}
-    	
-    	<div class="col-lg-8">
-			{{ question.body }} 
-			<br/>
-			{{ question.answer1 }}
-			<br/>
-			{{ question.answer2 }}
-			<br/>
-			{{ question.answer3 }}
-			<br/>
-			{{ question.answer4 }}
-			<br/>
-			<br/>						  
-    	</div>
-    	
-    	 {% endfor %}
-    </div>    
+    <!--  Questionaire -->
+    {% for question in question_list %}
+	<div class="container">            
+		<div class="row hidden-xs">
+			<div class="col-md-2">			
+			</div>
+			<div class="col-md-2">
+				<strong>2<sup>n</sup> (Level 0)</strong>
+			</div>
+			<div class="col-md-2">
+				<strong>n<sup>2</sup> (Level 1)</strong>
+			</div>			
+			<div class="col-md-2">
+				<strong>n (Level 2)</strong>
+			</div>			
+			<div class="col-md-2">
+				<strong>log(n) (Level 3)</strong>
+			</div>									  
+	    </div>	   
+	    
+
+		<div class="row">	
+			<div class="col-md-2">
+				{{ question.body }}
+			</div> 
+			
+			<div class="col-md-2">
+				<input type="radio" name="{{ question.seq }}" id="{{ question.seq }}" value="1" />                
+				{{ question.answer1 }}
+			</div>
+			<div class="col-md-2">
+				<input type="radio" name="{{ question.seq }}" id="{{ question.seq }}" value="1" />
+				{{ question.answer2 }}
+			</div>			
+			<div class="col-md-2">
+				<input type="radio" name="{{ question.seq }}" id="{{ question.seq }}" value="3" />			
+				{{ question.answer3 }}
+			</div>			
+			<div class="col-md-2">
+				<input type="radio" name="{{ question.seq }}" id="{{ question.seq }}" value="4" />			
+				{{ question.answer4 }}
+			</div>									  
+	    </div>	   
+	    
+	    <div class="row">
+	    	<br/>
+	    </div>
+	    	
+	</div>
+    {% endfor %}
+        
 
 		<div class="control-group">     
 	  		<div class="controls text-center"">
