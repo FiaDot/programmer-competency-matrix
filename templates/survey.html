@@ -2,15 +2,34 @@
 
 {% block content %}
     
+    <form class="form-inline" action="{% url 'survey.views.submit' %}" method="POST">      
+
     <!--  Questionaire -->        
 	<div class="row">
-		{% for it_question in question.object_list %}
+		{% for question in question_list %}
     	
     	<div class="col-lg-8">
-    		{{ it_question.body }}            
+			{{ question.body }} 
+			<br/>
+			{{ question.answer1 }}
+			<br/>
+			{{ question.answer2 }}
+			<br/>
+			{{ question.answer3 }}
+			<br/>
+			{{ question.answer4 }}
+			<br/>
+			<br/>						  
     	</div>
     	
     	 {% endfor %}
     </div>    
+
+		<div class="control-group">     
+	  		<div class="controls text-center"">
+	        	<button type="submit" value="Submit" class="btn">Submit</button>
+	     	</div>
+	    </div>
+	</form>
 
 {% endblock %}

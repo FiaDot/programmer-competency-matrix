@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^survey/$', 'survey.views.main'),
+    url(r'^survey/submit$', 'survey.views.submit'),
 )
