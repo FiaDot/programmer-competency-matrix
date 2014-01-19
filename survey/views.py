@@ -37,7 +37,7 @@ def submit(request):
     p = request.POST
     
     # 유져 정보 저장
-    user = User(email=p["email"], name=p["name"])        
+    user = User(email=p["email"], name=p["name"], exp=p["exp"])        
     user.save();
     
     
@@ -64,6 +64,15 @@ def submit(request):
     d.update(csrf(request))    
     return render_to_response("submit.html", d)
 
+
+def user(request, pk):
+    user = User.objects.get(pk=int(pk))
+    
+    answers = Answer.objects.get(user=user)
+            
+    d = dict(user=user, answers=answers)    
+    return render_to_response("statistics.html", d)
+    
 
 
 def statistics(request):
