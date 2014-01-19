@@ -2,8 +2,27 @@
 
 {% block content %}
     
-    <form class="form-inline" action="{% url 'survey.views.submit' %}" method="POST">      
+    <form class="form-inline" action="{% url 'survey.views.submit' %}" method="POST">
+    {% csrf_token %}
+	
 
+	<div class="control-group">
+       	<label class="control-label" for="name">Name</label>
+       	<div class="controls">
+         		<div class="contorls">{{ form.name }}</div>
+       	</div>
+    </div>
+
+
+	<div class="control-group">
+       	<label class="control-label" for="email">Email</label>
+       	<div class="controls">
+         		<div class="contorls">{{ form.email }}</div>
+       	</div>
+   </div>
+
+	
+	
     <!--  Questionaire -->
     {% for question in question_list %}
 	<div class="container">            
