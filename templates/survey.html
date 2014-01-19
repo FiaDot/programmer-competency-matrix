@@ -4,24 +4,44 @@
     
     <form class="form-inline" action="{% url 'survey.views.submit' %}" method="POST">
     {% csrf_token %}
+		
 	
 
-	<div class="control-group">
-       	<label class="control-label" for="name">Name</label>
-       	<div class="controls">
-         		<div class="contorls">{{ form.name }}</div>
-       	</div>
-    </div>
 
-
-	<div class="control-group">
-       	<label class="control-label" for="email">Email</label>
-       	<div class="controls">
-         		<div class="contorls">{{ form.email }}</div>
-       	</div>
-   </div>
-
+	<div class="container">      
+		<div class="row">	
+			<div class="col-md-2">
+				<div class="control-group">
+			       	<label class="control-label" for="name">Name</label>
+			       	<div class="controls">
+			         		<div class="contorls">{{ form.name }}</div>
+			       	</div>
+			    </div>
+			</div> 
+			
+			<div class="col-md-3">
+				<div class="control-group">
+			       	<label class="control-label" for="name">Email</label>
+			       	<div class="controls">
+			         		<div class="contorls">{{ form.email }}</div>
+			       	</div>
+			    </div>
+			</div> 
+			
+			<div class="col-md-2">
+				<div class="control-group">
+			       	<label class="control-label" for="name">Experience (year)</label>
+			       	<div class="controls">
+			         		<div class="contorls">{{ form.exp }}</div>
+			       	</div>
+			    </div>
+			</div> 
+			
+		</div>
+	</div>
 	
+	<br><br>
+		
 	
     <!--  Questionaire -->
     {% for question in question_list %}

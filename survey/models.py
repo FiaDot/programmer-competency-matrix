@@ -17,6 +17,7 @@ class Question(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField()    
+    exp = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

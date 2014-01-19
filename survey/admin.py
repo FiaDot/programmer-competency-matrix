@@ -13,7 +13,7 @@ admin.site.register(Question, QustionAdmin)
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email')
+    list_display = ('name', 'email', 'exp')
     
 admin.site.register(User, UserAdmin)
 
