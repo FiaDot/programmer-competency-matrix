@@ -45,20 +45,21 @@ def submit(request):
         # 유져 정보 저장
         user = User(email=p["email"], name=p["name"], exp=p["exp"])        
         user.save();
-    
+        
     
     # 문항 최대 번호 검색
-    max_seq_record = Question.objects.all().aggregate(Max('seq'))
-    max_seq = int(max_seq_record['seq__max']) + 1
+    #max_seq_record = Question.objects.all().aggregate(Max('seq'))
+    #max_seq = int(max_seq_record['seq__max']) + 1
     
+    questions = Question.objects.all()
     
     # 점수 계산, 답변 저장
     score = 0
 
-    for i in range(1, max_seq):        
-        question = Question.objects.get(seq=i)           
-        
-        value = '%s' % i        
+    #for i in range(1, max_seq):
+    for question in questions:        
+        #question = Question.objects.get(seq=i)        
+        value = '%s' % question.pk        
         score += int(p[value])
         logger.error(p[value])
         
@@ -69,9 +70,10 @@ def submit(request):
     d = dict(user=user, score=score)
     d.update(csrf(request))    
         
-    
-    return render_to_response("submit.html", d)
+    #return render_to_response("submit.html", d)
 
+    return HttpResponseRedirect(reverse("survey.views.user", args=[user.pk]))
+    
 
 def user(request, pk):
     questions = Question.objects.all()
