@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
 from django.db.models import Max
+from django.http import Http404
+from django.http import HttpResponse, HttpResponseNotFound
 
 from survey.models import Question
 from survey.models import User
@@ -35,10 +37,14 @@ def main(request):
 def submit(request):
     logger.info(request.POST)
     p = request.POST
+
     
-    # 유져 정보 저장
-    user = User(email=p["email"], name=p["name"], exp=p["exp"])        
-    user.save();
+    try: 
+        user = User.objects.get(email=p["email"])
+    except User.DoesNotExist:
+        # 유져 정보 저장
+        user = User(email=p["email"], name=p["name"], exp=p["exp"])        
+        user.save();
     
     
     # 문항 최대 번호 검색
@@ -62,18 +68,38 @@ def submit(request):
         
     d = dict(user=user, score=score)
     d.update(csrf(request))    
+        
+    
     return render_to_response("submit.html", d)
 
 
 def user(request, pk):
-    user = User.objects.get(pk=int(pk))
+    questions = Question.objects.all()
     
-    answers = Answer.objects.get(user=user)
+    try: 
+        user = User.objects.get(pk=int(pk))        
+    except User.DoesNotExist:    
+#        raise Http404
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+    
+    score = 0;
+    
+    for question in questions:
+        answer = Answer.objects.get(user=user, question=question)
+        score += answer.answer
             
-    d = dict(user=user, answers=answers)    
+    d = dict(user=user, score=score)    
     return render_to_response("statistics.html", d)
     
 
 
 def statistics(request):
     return 1
+
+
+def get_score(user, answers):
+    score = 0
+    return score
+    
+
+        
